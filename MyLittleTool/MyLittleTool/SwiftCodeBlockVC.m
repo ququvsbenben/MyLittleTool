@@ -7,9 +7,12 @@
 //
 
 #import "SwiftCodeBlockVC.h"
+#import "Masonry.h"
 
 @interface SwiftCodeBlockVC ()<UITextFieldDelegate, UITableViewDelegate,UITableViewDataSource, UIScrollViewDelegate>
 
+
+@property (nonatomic, strong) UIView            * ququ_view;
 @property (nonatomic, strong) UILabel           * ququ_lable;
 @property (nonatomic, strong) UIImageView       * ququ_imangeView;
 @property (nonatomic, strong) UIButton          * ququ_button;
@@ -48,6 +51,35 @@
 #pragma mark - getters and setters
 
 // **************************
+
+#pragma mark Masonry 使用
+- (void)useMasonry
+{
+    _ququ_view = [[UIView alloc] init];
+    [self.view addSubview:_ququ_view];
+    
+    [_ququ_view mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+        // 充满父类 view
+        make.edges.equalTo(super.view);
+        
+        // 距父类 view 上下左右各 10 像素   //  上 、左、下、右
+        make.edges.equalTo(super.view).with.insets(UIEdgeInsetsMake(10, 10, 10, 10));
+        // 同上
+        make.top.left.bottom.and.right.equalTo(super.view).with.insets(UIEdgeInsetsMake(10, 10, 10, 10));
+        // 同上
+        make.top.equalTo(super.view).with.offset(10);
+        make.left.equalTo(super.view).with.offset(10);
+        make.bottom.equalTo(super.view).with.offset(-10);
+        make.right.equalTo(super.view).with.offset(-10);
+        
+        // view 居中显示
+        make.center.equalTo(super.view);
+        // 设置 view 大小
+        make.size.mas_equalTo(CGSizeMake(300, 300));
+        
+    }];
+}
 
 #pragma mark 创建lable
 - (void)setup_ququ_Lable{
