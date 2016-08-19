@@ -121,7 +121,8 @@
     textField.delegate = self;
     [self.view addSubview:textField];
 }
-#pragma mark UITextFieldDelegate & 收放键盘
+
+#pragma mark 收放键盘
 // 设置键盘
 - (void)setup_ququ_keyboard
 {
