@@ -37,18 +37,18 @@
 
 // vc 方法结构 ***********
 
-#pragma mark - life cycle
+#pragma mark - LifeCycle
 
 #pragma mark - SystemDelegate
-#pragma mark UITableViewDataSource
+#pragma mark --> tableViewDataSource
 
 #pragma mark - CustomDelegate
 
-#pragma mark - event response
+#pragma mark - EventResponse
 
-#pragma mark - private methods
+#pragma mark - PrivateMethods
 
-#pragma mark - getters and setters
+#pragma mark - Getters and Setters
 
 // **************************
 
@@ -79,9 +79,22 @@
         make.size.mas_equalTo(CGSizeMake(300, 300));
         
     }];
+    
+    /*  block 代码块
+     
+    ^(<#arguments1#>, <#arguments2#>){
+        <#code#>
+        <#return#> <#expression#>;
+    };
+     
+     */
+    
+    // 注释
+    // #pragma mark --> <# 输入注释 #>
+    // /** <# 输入注释 #> */
 }
 
-#pragma mark 创建lable
+#pragma mark --> 创建lable
 - (void)setup_ququ_Lable{
     UILabel *label = [[UILabel alloc] init];
     label.frame = CGRectMake(10, 100, 300, 30);
@@ -96,7 +109,7 @@
     
     _ququ_lable = label;
 }
-#pragma mark 创建ImageView
+#pragma mark --> 创建ImageView
 - (void)setup_ququ_ImageView{
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"2.png"]];
     imageView.frame = CGRectMake(0, 0, 100, 100);
@@ -107,7 +120,7 @@
     
     _ququ_imangeView = imageView;
 }
-#pragma mark 创建btn
+#pragma mark --> 创建btn
 - (void)setup_ququ_Button{
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(20, 25, 50, 30);
@@ -134,7 +147,7 @@
 {
     
 }
-#pragma mark 创建UITextField
+#pragma mark -->  创建UITextField
 - (void)setup_ququ_UITextField{
     UITextField *textField = [[UITextField alloc] init];
     textField.frame = CGRectMake(10, 400, 300, 30);
@@ -154,7 +167,7 @@
     [self.view addSubview:textField];
 }
 
-#pragma mark 收放键盘
+#pragma mark --> 收放键盘
 // 设置键盘
 - (void)setup_ququ_keyboard
 {
@@ -189,14 +202,14 @@
     [_ququ_textField resignFirstResponder];
 }
 
-#pragma mark UITextFieldDelegate
+#pragma mark --> textFieldDelegate
 // 取消第一响应者
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     // 取消第一响应者
     [_ququ_textField resignFirstResponder];
     return YES;
 }
-#pragma mark 创建UIScrollView
+#pragma mark --> 创建UIScrollView
 - (void)setup_ququ_scrollView{
     // 滚动视图
     UIScrollView *scrollView = [[UIScrollView alloc] init];
@@ -224,7 +237,7 @@
     
     _ququ_scrollView = scrollView;
 }
-#pragma mark UIScrollViewDelegate
+#pragma mark --> scrollViewDelegate
 // 当ScrollView滚动时调用此方法
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     NSLog(@"scrollViewDidScroll");
@@ -249,7 +262,7 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     NSLog(@"scrollViewDidEndDecelerating");
 }
-#pragma mark 创建TabelView
+#pragma mark --> 创建TabelView
 - (void)setup_ququ_TableView{
     UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.height, self.view.bounds.size.height-64) style:UITableViewStylePlain];
     tableView.delegate = self;
@@ -280,7 +293,7 @@
     
     _ququ_tableView = tableView;
 }
-#pragma mark UITableViewDelegate & UITableViewDataSource
+#pragma mark --> tableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 5;
 }
@@ -294,9 +307,10 @@
     {
         cell =  [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellName];
     }
-    cell.textLabel.text = [[NSString alloc] initWithFormat:@"第 -- %ld -- 行",indexPath.row];
+    cell.textLabel.text = [[NSString alloc] initWithFormat:@"第 --> %ld --> 行",indexPath.row];
     return cell;
 }
+#pragma mark --> tableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //选中cell
 }
