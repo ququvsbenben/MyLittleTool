@@ -12,9 +12,23 @@
 @interface SwiftCodeBlockVC ()<UITextFieldDelegate, UITableViewDelegate,UITableViewDataSource, UIScrollViewDelegate>
 
 
+#pragma mark - <#功能#>
+///=============================================================================
+/// @name <#该类功能#>   <#控件view#>
+///=============================================================================
 @property (nonatomic, strong) UIView            * ququ_view;
+
+#pragma mark - label
+///=============================================================================
+/// @name 功能 控件
+///=============================================================================
 @property (nonatomic, strong) UILabel           * ququ_lable;
+#pragma mark - tableview
+///=============================================================================
+/// @name 功能 控件
+///=============================================================================
 @property (nonatomic, strong) UIImageView       * ququ_imangeView;
+
 @property (nonatomic, strong) UIButton          * ququ_button;
 @property (nonatomic, strong) UITextField       * ququ_textField;
 @property (nonatomic, strong) UIScrollView      * ququ_scrollView;
@@ -25,9 +39,13 @@
 
 @implementation SwiftCodeBlockVC
 
+#pragma mark -
+#pragma mark -
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,22 +55,28 @@
 
 // vc 方法结构 ***********
 
-#pragma mark - LifeCycle
+#pragma mark -
+#pragma mark - LifeCycle《生命周期》
 
-#pragma mark - SystemDelegate
-#pragma mark --> tableViewDataSource
+#pragma mark -
+#pragma mark - SystemDelegate《系统代理方法》
+#pragma mark --- <tableViewDataSource>
 
-#pragma mark - CustomDelegate
+#pragma mark -
+#pragma mark - CustomDelegate《自定义代理方法》
 
-#pragma mark - EventResponse
+#pragma mark -
+#pragma mark - EventResponse《点击事件方法》
 
-#pragma mark - PrivateMethods
+#pragma mark -
+#pragma mark - PrivateMethods《私有方法》
 
-#pragma mark - Getters and Setters
+#pragma mark -
+#pragma mark - Getters and Setters《get和set方法》
 
 // **************************
-
-#pragma mark Masonry 使用
+#pragma mark -
+#pragma mark - Masonry 使用
 - (void)useMasonry
 {
     _ququ_view = [[UIView alloc] init];
@@ -80,6 +104,7 @@
         
     }];
     
+    
     /*  block 代码块
      
     ^(<#arguments1#>, <#arguments2#>){
@@ -90,11 +115,18 @@
      */
     
     // 注释
-    // #pragma mark --> <# 输入注释 #>
+    // #pragma mark --- <<# 输入注释 #>>
     // /** <# 输入注释 #> */
+    
+    /*  .h  注释
+    #pragma mark - <#功能#>
+    ///=============================================================================
+    /// @name <#该类功能#>   <#控件view#>
+    ///=============================================================================
+    */
 }
 
-#pragma mark --> 创建lable
+#pragma mark --- <创建lable>
 - (void)setup_ququ_Lable{
     UILabel *label = [[UILabel alloc] init];
     label.frame = CGRectMake(10, 100, 300, 30);
@@ -109,7 +141,7 @@
     
     _ququ_lable = label;
 }
-#pragma mark --> 创建ImageView
+#pragma mark --- <创建imageView>
 - (void)setup_ququ_ImageView{
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"2.png"]];
     imageView.frame = CGRectMake(0, 0, 100, 100);
@@ -120,7 +152,7 @@
     
     _ququ_imangeView = imageView;
 }
-#pragma mark --> 创建btn
+#pragma mark --- <创建button>
 - (void)setup_ququ_Button{
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(20, 25, 50, 30);
@@ -147,7 +179,7 @@
 {
     
 }
-#pragma mark -->  创建UITextField
+#pragma mark --- <创建textField>
 - (void)setup_ququ_UITextField{
     UITextField *textField = [[UITextField alloc] init];
     textField.frame = CGRectMake(10, 400, 300, 30);
@@ -167,7 +199,7 @@
     [self.view addSubview:textField];
 }
 
-#pragma mark --> 收放键盘
+#pragma mark --- <收放键盘>
 // 设置键盘
 - (void)setup_ququ_keyboard
 {
@@ -202,14 +234,14 @@
     [_ququ_textField resignFirstResponder];
 }
 
-#pragma mark --> textFieldDelegate
+#pragma mark --- <textFieldDelegate>
 // 取消第一响应者
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     // 取消第一响应者
     [_ququ_textField resignFirstResponder];
     return YES;
 }
-#pragma mark --> 创建UIScrollView
+#pragma mark --- <创建UIScrollView>
 - (void)setup_ququ_scrollView{
     // 滚动视图
     UIScrollView *scrollView = [[UIScrollView alloc] init];
@@ -237,7 +269,7 @@
     
     _ququ_scrollView = scrollView;
 }
-#pragma mark --> scrollViewDelegate
+#pragma mark --- <scrollViewDelegate>
 // 当ScrollView滚动时调用此方法
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     NSLog(@"scrollViewDidScroll");
@@ -262,7 +294,7 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     NSLog(@"scrollViewDidEndDecelerating");
 }
-#pragma mark --> 创建TabelView
+#pragma mark --- <创建TabelView>
 - (void)setup_ququ_TableView{
     UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.height, self.view.bounds.size.height-64) style:UITableViewStylePlain];
     tableView.delegate = self;
@@ -293,7 +325,7 @@
     
     _ququ_tableView = tableView;
 }
-#pragma mark --> tableViewDataSource
+#pragma mark --- <tableViewDataSource>
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 5;
 }
@@ -310,7 +342,7 @@
     cell.textLabel.text = [[NSString alloc] initWithFormat:@"第 --> %ld --> 行",indexPath.row];
     return cell;
 }
-#pragma mark --> tableViewDelegate
+#pragma mark --- <tableViewDelegate>
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //选中cell
 }
