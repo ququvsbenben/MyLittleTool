@@ -14,6 +14,43 @@
 
 @implementation AppDelegate
 
+- (void)redirectNSlogToDocumentFolder
+{
+    NSFileManager *defaultManager = [NSFileManager defaultManager];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH-mm-ss"];
+    NSString *time = [dateFormatter stringFromDate:[NSDate date]];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [paths objectAtIndex:0];
+    NSString *basePath = [documentDirectory stringByAppendingString:@"/AppLog"];
+    
+    //    //
+    //    NSString *today = [time substringToIndex:10];
+    //    NSString *date = [[NSUserDefaults standardUserDefaults] objectForKey:@"DateKey"];
+    //    if (![date isEqualToString:today]) {
+    //        [defaultManager removeItemAtPath:basePath error:nil];
+    //        [[NSUserDefaults standardUserDefaults] setObject:today forKey:@"DateKey"];
+    //        [[NSUserDefaults standardUserDefaults] synchronize];
+    //    }
+    BOOL isDir = NO;
+    BOOL isExist = [defaultManager fileExistsAtPath:basePath isDirectory:&isDir];
+    if (isExist == NO || isDir == NO) {
+        [defaultManager removeItemAtPath:basePath error:nil];
+        [defaultManager createDirectoryAtPath:basePath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    
+    NSString *fileName = [NSString stringWithFormat:@"%@.log", time];
+    NSString *logFilePath = [basePath stringByAppendingPathComponent:fileName];
+    NSLog(@"logFilePath==%@", logFilePath);
+    // 先删除已经存在的文件
+    [defaultManager removeItemAtPath:logFilePath error:nil];
+    
+    // 将log输入到文件
+    freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding], "a+", stdout);
+    freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding], "a+", stderr);
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
